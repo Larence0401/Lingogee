@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import { useAuth } from '../firebase'
 import {useRouter } from 'next/router'
 import {Avatar} from "@mui/material"
@@ -13,6 +13,8 @@ import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import MicIcon from '@mui/icons-material/Mic';
 import getRecipientEmail from "../utils/getRecipientEmail"
 import TimeAgo from "timeago-react"
+import LanguageSelect from './LanguageSelect'
+import { ref, getDownloadURL, uploadString } from "@firebase/storage"
 
 
 
@@ -28,6 +30,19 @@ const Chatscreen = ({chat, messages}) => {
  const q = query(ref, orderBy("timestamp","asc"))
  const [messagesSnapshot] = useCollection(q)
  const [recipientSnapshot] = useCollection(recipientQuery)
+ const [selectedFile, setSelectedFile] = useState(null)
+ const [loading, setLoading] = useState(false)
+
+ const addImageToPost = (e) => {
+  const reader = new FileReader();
+  if (e.target.files[0]) {
+    reader.readAsDataURL(e.target.files[0]);
+  }
+
+  reader.onload = (readerEvent) => {
+    setSelectedFile(readerEvent.target.result);
+  };
+};
 
   const showMessages = () => {
     if(messagesSnapshot) {     
@@ -73,13 +88,17 @@ const Chatscreen = ({chat, messages}) => {
     scrollToBottom()
   }
 
+  useEffect(() => {
+    //
+  })
+
   const recipient = recipientSnapshot?.docs?.[0]?.data()
   const recipientEmail = getRecipientEmail(chat.users, user)
-  console.log(recipient?.photoURL)
 
   return (
     <div className="w-full">
-        <div className="sticky z-100 top-0 flex p-4 pb-8 border-b-2 border-slate-50">
+        <div className="sticky z-50 top-0 flex p-4 border-b-2 border-slate-50 justify-between bg-white shadow-sm">
+          <div className="flex items-center">
             {recipient ? (
               <Avatar src={recipient?.photoURL} />
             ) : (
@@ -96,8 +115,8 @@ const Chatscreen = ({chat, messages}) => {
                 <p>Loading Last active ...</p>
               )}           
             </div>
-            
-            <div className="w-1/3 h-full bg-blue-800">flags</div>
+            </div>
+            <LanguageSelect/>
             <div className="flex">
               <IconButton>
                 <AttachFileIcon/>                
@@ -112,7 +131,15 @@ const Chatscreen = ({chat, messages}) => {
           <div ref={endOfMessagesRef} className="mb-16"></div>
         </div>  
         <form id="input-container" className="flex items-center p-4 sticky bottom-0 bg-white z-100">
-          <InsertEmoticonIcon/>
+
+          <IconButton>
+            <InsertEmoticonIcon className="text-slate-800 hover:text-slate-900 text-2xl"/>
+          </IconButton>
+ 
+          <input type="file" id="fileUpload" name="fileUpload" hidden onChange={addImageToPost}/>  
+          <label htmlFor="fileUpload">
+            <AttachFileIcon className="text-slate-800 text-2xl hover:text-slate-900 hover:text-black"/>
+          </label>      
           <input type="text" className="flex-1 outline-0 border-0 rounded bg-slate-50 p-6 ml-4 mr-4" value={input} onChange={e => setInput(e.target.value)}/>
           <button hidden disabled={!input} onClick={sendMessage}>Send Message</button>
           <MicIcon/>

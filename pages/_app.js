@@ -1,10 +1,11 @@
 import '../styles/globals.css'
 import {useAuth, setUserData} from '../firebase'
-import {useEffect} from 'react'
+import {useEffect, useContext} from 'react'
 import Login from './login'
+import {ContextProvider} from '../store/context'
 
 function MyApp({ Component, pageProps }) {
-  const user = useAuth()
+   const user = useAuth()
 
   useEffect(() => {
     if(user) {
@@ -14,7 +15,13 @@ function MyApp({ Component, pageProps }) {
   [user])
 
   if(!user) return <Login />
-  return <Component {...pageProps} />
+  return (
+    <ContextProvider>
+      <Component {...pageProps} />    
+      </ContextProvider>
+  )
+    
+        
 }
 
 export default MyApp

@@ -15,9 +15,7 @@ const [recipientSnapshot] = useCollection(q)
 const recipient = recipientSnapshot?.docs?.[0]?.data()
 
 const recipientEmail = getRecipientEmail(users, user) 
-console.log(recipient)
-console.log(recipientEmail)
-console.log(recipient && recipient.photoURL)
+
 
 const enterChat = () => {router.push(`/chat/${id}`)}
 

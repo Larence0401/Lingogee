@@ -5,6 +5,7 @@ import ChatScreen from '../../components/ChatScreen'
 import { collection, doc, query, orderBy, getDocs, getDoc } from "firebase/firestore"
 import getRecipientEmail from '../../utils/getRecipientEmail'
 import {db, useAuth} from '../../firebase'
+import {ContextProvider} from '../../store/context'
 
 const Chat = ({chat, messages}) => {
   const user = useAuth()

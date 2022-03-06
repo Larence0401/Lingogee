@@ -2,6 +2,7 @@
 import { initializeApp,} from "firebase/app";
 import { getFirestore, collection, doc, setDoc, addDoc, serverTimestamp, query, where } from "firebase/firestore"
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth"
+import { getStorage } from "firebase/storage"
 import {useState, useEffect} from 'react'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,6 +23,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 const auth = getAuth(app)
+const storage = getStorage(app)
 const provider = new GoogleAuthProvider()
 const colRef = collection(db, 'users')
 
@@ -67,4 +69,4 @@ useEffect(() => {
     return currentUser
 }
 
-export {db, auth, provider, userChatRef, useAuth, signIn, setUserData, signOutUser, addChat}
+export {db, auth, storage, provider, userChatRef, useAuth, signIn, setUserData, signOutUser, addChat}
