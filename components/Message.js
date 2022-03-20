@@ -32,7 +32,7 @@ const Message = ({ user, message }) => {
   useEffect(() => {
     if ((state.modeOne === 1 && state.modeTwo === 1) || !message) return;
     getTranslation();
-  }, [message, state.modeOne, state.modeTwo]);
+  }, [message, state]);
 
   const getLanguage = () => {
     let language = "";

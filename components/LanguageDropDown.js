@@ -1,6 +1,7 @@
 import React from "react";
 
 const LanguageDropDown = ({ setLangOne, setLangTwo, side }) => {
+
   return (
     <select
       name=""

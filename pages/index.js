@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Sidebar from "../components/Sidebar";
-import Modal from "../components/Modal";
 import { useTranslationContext } from "../store/context";
 
 export default function Home() {
@@ -16,12 +15,6 @@ export default function Home() {
       <div className="text-blue-700">
         <Sidebar />
       </div>
-      <Modal
-        onClose={() => dispatch({ type: "showModal", payload: false })}
-        show={state.showModal}
-      >
-        Hello from the modal!
-      </Modal>
     </>
   );
 }

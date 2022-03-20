@@ -1,5 +1,5 @@
-import Signup from "./SignUp";
-import SignIn from "./SignIn";
+import SignUp from "./signup.js";
+import SignIn from "./SignIn.js";
 import { useTranslationContext } from "../store/context";
 
 const LoginForm = () => {
@@ -16,7 +16,7 @@ const LoginForm = () => {
 
   return (
     <>
-      {state.showSignUp ? <Signup /> : <SignIn />}
+      {state.showSignUp ? <SignUp /> : <SignIn />}
       <div className="box-border mt-8 flex items-center justify-around">
         <button
           className={`px-8 py-2 mr-4 font-semibold uppercase rounded-md ${signInBtn}`}

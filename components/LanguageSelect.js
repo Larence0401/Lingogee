@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { findFlagUrlByNationality } from "country-flags-svg";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useTranslationContext } from "../store/context";
-import LanguageDropDown from "./LanguageDropDown"
+import LanguageDropDown from "./languageDropDown"
 
 const LanguageSelect = () => {
   const [langOne, setLangOne] = useState("German");
@@ -93,7 +93,7 @@ const LanguageSelect = () => {
         >
           {btnText2}
         </button>
-        <LanguageDropDown setLangOne={setLangTwo} side="two"/>
+        <LanguageDropDown setLangTwo={setLangTwo} side="two"/>
         <div>
           <img src={flagUrlTwo} className="w-16" />
         </div>
