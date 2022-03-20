@@ -12,7 +12,7 @@ const Login = () => {
           <title>Login</title>
         </Head>
         <div className="flex flex-col items-center bg-white p-16 rounded-lg shadow-md items-center">
-          <Image src={logo_2} width={150} height={150} objectFit="contain" />
+          <Image src={logo_2} width={150} height={150} objectFit="contain" alt="logo"/>
           <LoginForm />
         </div>
       </div>

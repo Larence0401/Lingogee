@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Avatar, IconButton, Button } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import * as EmailValidator from "email-validator";
 import { addChat, useAuth, userChatRef, db } from "../firebase";
