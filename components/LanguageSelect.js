@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { findFlagUrlByNationality } from "country-flags-svg";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useTranslationContext } from "../store/context";
-import LanguageDropDown from "./languageDropDown"
+import LanguageDropDown from "./LanguageDropDown.js"
 
 const LanguageSelect = () => {
   const [langOne, setLangOne] = useState("German");

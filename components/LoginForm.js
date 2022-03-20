@@ -1,4 +1,4 @@
-import SignUp from "./signup.js";
+import SignUp from "./Signup.js";
 import SignIn from "./SignIn.js";
 import { useTranslationContext } from "../store/context";
 
