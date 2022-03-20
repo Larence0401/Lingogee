@@ -1,27 +1,24 @@
-import '../styles/globals.css'
-import {useAuth, setUserData} from '../firebase'
-import {useEffect, useContext} from 'react'
-import Login from './login'
-import {ContextProvider} from '../store/context'
+import "../styles/globals.css";
+import { useAuth, setUserData } from "../firebase";
+import { useEffect } from "react";
+import Login from "./login";
+import { ContextProvider } from "../store/context";
 
 function MyApp({ Component, pageProps }) {
-   const user = useAuth()
+  const user = useAuth();
 
   useEffect(() => {
-    if(user) {
-       setUserData(user)
+    if (user) {
+      setUserData(user);
     }
-  },
-  [user])
+  }, [user]);
 
-  if(!user) return <Login />
+  if (!user) return <Login />;
   return (
     <ContextProvider>
-      <Component {...pageProps} />    
-      </ContextProvider>
-  )
-    
-        
+      <Component {...pageProps} />
+    </ContextProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

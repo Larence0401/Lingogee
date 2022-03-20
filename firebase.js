@@ -1,72 +1,107 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp,} from "firebase/app";
-import { getFirestore, collection, doc, setDoc, addDoc, serverTimestamp, query, where } from "firebase/firestore"
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth"
-import { getStorage } from "firebase/storage"
-import {useState, useEffect} from 'react'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "firebase/app";
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  addDoc,
+  serverTimestamp,
+  query,
+  where,
+} from "firebase/firestore";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { getStorage } from "firebase/storage";
+import { useState, useEffect } from "react";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDtal4j7Q_7OuGRr1u0Nr41SX0iZ4oTn40",
-  authDomain: "lingogee-f9a87.firebaseapp.com",
-  projectId: "lingogee-f9a87",
-  storageBucket: "lingogee-f9a87.appspot.com",
-  messagingSenderId: "448331945916",
-  appId: "1:448331945916:web:ae0582a58e280334acfdb9",
-  measurementId: "G-K6H0NBVNMF"
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
+  measurementId: process.env.measurementId,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app)
-const auth = getAuth(app)
-const storage = getStorage(app)
-const provider = new GoogleAuthProvider()
-const colRef = collection(db, 'users')
+const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
+const provider = new GoogleAuthProvider();
+const colRef = collection(db, "users");
 
-const userChatRef = (userEmail="aventuras030@gmail.com") => query(collection(db,'chats'), where('users', 'array-contains', userEmail))
+const userChatRef = (userEmail = "aventuras030@gmail.com") =>
+  query(collection(db, "chats"), where("users", "array-contains", userEmail));
 
+const loginWithGoogle = async () => {
+  await signInWithPopup(auth, provider).catch((error) => alert(error.message));
+};
 
+const signupUser = (email, password) =>
+  createUserWithEmailAndPassword(auth, email, password);
 
-const signIn = async() => {
-  await signInWithPopup(auth,provider).catch(error => alert(error.message))
-}
+const loginUser = (email, password) =>
+  signInWithEmailAndPassword(auth, email, password);
 
 const signOutUser = () => {
-  signOut(auth)
-}
+  signOut(auth);
+};
 
 const setUserData = (user) => {
-    try {
-       setDoc(doc(colRef,user.uid), {
+  try {
+    setDoc(
+      doc(colRef, user.uid),
+      {
         email: user.email,
         lastSeen: serverTimestamp(),
-        photoURL: user.photoURL
-  }, {merge: true})
-    } catch { console.log("write to db failed")}   
-}
+        photoURL: user.photoURL,
+      },
+      { merge: true }
+    );
+  } catch {
+    console.log("write to db failed");
+  }
+};
 
-const addChat = (user,input) => {
-    addDoc(collection(db, "chats"), {
-        users: [user.email, input]
-    })
-    }
-
-
-
+const addChat = (user, input) => {
+  addDoc(collection(db, "chats"), {
+    users: [user.email, input],
+  });
+};
 
 const useAuth = () => {
-    const [currentUser,setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState();
 
-useEffect(() => {
-  const unsub = onAuthStateChanged(auth, user => setCurrentUser(user))
-  return unsub
-},[])
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => setCurrentUser(user));
+    return unsub;
+  }, []);
 
-    return currentUser
-}
+  return currentUser;
+};
 
-export {db, auth, storage, provider, userChatRef, useAuth, signIn, setUserData, signOutUser, addChat}
+export {
+  db,
+  auth,
+  app,
+  storage,
+  provider,
+  userChatRef,
+  useAuth,
+  loginWithGoogle,
+  signupUser,
+  loginUser,
+  setUserData,
+  signOutUser,
+  addChat,
+};

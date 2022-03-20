@@ -1,12 +1,10 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Sidebar from '../components/Sidebar'
-import {ContextProvider} from '../store/context'
+import Head from "next/head";
+import Sidebar from "../components/Sidebar";
+import Modal from "../components/Modal";
+import { useTranslationContext } from "../store/context";
 
 export default function Home() {
-
-
+  const { state, dispatch } = useTranslationContext();
 
   return (
     <>
@@ -16,8 +14,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="text-blue-700">
-        <Sidebar/>
+        <Sidebar />
       </div>
-      </>
-  )
+      <Modal
+        onClose={() => dispatch({ type: "showModal", payload: false })}
+        show={state.showModal}
+      >
+        Hello from the modal!
+      </Modal>
+    </>
+  );
 }
