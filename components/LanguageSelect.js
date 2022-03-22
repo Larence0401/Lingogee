@@ -67,7 +67,7 @@ const LanguageSelect = () => {
 
   return (
     <div
-      className="-translate-x-16 flex items-center box-border"
+      className="xl:-translate-x-16 flex items-center box-border"
       id="langSelectContainer"
     >
       <div className="flex border-2 border-sky-100 p-4 mr-4 rounded">
@@ -78,12 +78,12 @@ const LanguageSelect = () => {
           {btnText1}
         </button>
         <LanguageDropDown setLangOne={setLangOne} side="one"/>
-        <div>
+        <div className="flex items-center">
           <img src={flagUrlOne} className="w-16" />
         </div>
       </div>
 
-      <div className="p-4 text-blue-600 mr-4">
+      <div className="p-4 text-blue-600 mr-4 hidden lg:block">
         <LanguageIcon style={{ fontSize: "3em" }} />
       </div>
       <div className="flex border-2 border-sky-100 p-4 mr-4 rounded">
@@ -94,7 +94,7 @@ const LanguageSelect = () => {
           {btnText2}
         </button>
         <LanguageDropDown setLangTwo={setLangTwo} side="two"/>
-        <div>
+        <div className="flex items-center">
           <img src={flagUrlTwo} className="w-16" />
         </div>
       </div>

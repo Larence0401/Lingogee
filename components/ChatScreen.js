@@ -25,6 +25,8 @@ import LanguageSelect from "./LanguageSelect";
 import { ref, getDownloadURL, uploadString } from "@firebase/storage";
 import FileUpload from "./FileUpload";
 import EmojiPicker from './EmojiPicker'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Link from 'next/link'
 
 //This component displays the messages in a respective chat, the top menu bar and the input field for new messages
 
@@ -153,9 +155,9 @@ const Chatscreen = ({ chat, messages }) => {
             <Avatar>{recipientEmail[0]}</Avatar>
           )}
           <div className="ml-8 flex-1">
-            <h3>{username ? username : recipientEmail}</h3>
+            <h3 className="hidden xl:flex">{username ? username : recipientEmail}</h3>
             {recipientSnapshot ? (
-              <p>
+              <p className="hidden xl:flex">
                 Last active:{" "}
                 {recipient?.lastSeen?.toDate() ? (
                   <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
@@ -174,8 +176,14 @@ const Chatscreen = ({ chat, messages }) => {
       </div>
       <div
         id="message-container"
-        className="p-12 bg-sky-50 h-[90vh] !overflow-y-auto"
+        className="p-12 bg-sky-50 h-[90vh] !overflow-y-auto w-full"
       >
+      <Link href="/">
+        <div className="z-90 rounded-full bg-white p-2 shadow-md fixed top-[150px] left-8 md:hidden">
+          <ArrowBackIcon/>
+        </div>
+      </Link>
+      
         {selectedFile ? (
           <FileUpload
             file={selectedFile}

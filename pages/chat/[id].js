@@ -20,7 +20,7 @@ const Chat = ({ chat, messages }) => {
       <Head>
         <title>Chat with {getRecipientEmail(chat.users, user)}</title>
       </Head>
-      <Sidebar />
+      <Sidebar/>
       <div className="flex w-full">
         <ChatScreen
           className="h-screen w-screen"

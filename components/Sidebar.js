@@ -68,41 +68,28 @@ const Sidebar = () => {
       message.forEach((doc) => {
         timestampSet.add(doc.data().timestamp.seconds);
         const timestampArr = Array.from(timestampSet);
-        timestampRef.current = timestampArr;
-        timestampRef.current.length === chatIDs.length
-          ? setTimestampIsSet(true)
+        timestampArr.length === chatIDs.length - 1 ?
+        getLatestChatID(timestampArr)
           : null;
       });
     });
   };
 
-  const getLatestChatID = () => {
-    const arr = timestampRef.current;
-    if (!Array.isArray(arr)) return;
-    const max = Math.max(...arr);
-    const index = arr.indexOf(max);
+  const getLatestChatID = (array) => {
+    const max = Math.max(...array);
+    const index = array.indexOf(max);
     const chatIDs = getAllChatIDs();
     const result = chatIDs[index];
-    return result;
-  };
-
-  const loadLatestChat = async () => {
-    if (router.pathname !== "/") return;
-    await getLatestTimestamps();
-    await getLatestChatID();
-    const latestChatID = getLatestChatID();
-    if (latestChatID !== undefined) {
-      router.push(`/chat/${latestChatID}`);
-    }
+    router.push(`/chat/${result}`)
   };
 
   useEffect(async () => {
-    if (!chatsExist) return;
-    await loadLatestChat();
-  }, [timestampIsSet, chatsSnapshot]);
+    if (!chatsExist() || router.pathname !== "/" || window.innerWidth < 450) return;
+    await getLatestTimestamps();
+  }, [chatsSnapshot]);
 
   return (
-    <div className="flex-[.45] border-r-2 br-slate-50 h-screen min-w-[300px] mx-w-[350px] relative">
+    <div className="flex-[.45] border-r-2 br-slate-50 h-screen min-w-[300px] mx-w-[350px] relative hidden md:block">
       {isOpen ? (
         <EditProfile setIsOpen={setIsOpen} />
       ) : (
