@@ -33,25 +33,30 @@ const SignIn = () => {
           placeholder="your password"
           onChange={(e) => setPassword(e.target.value)}
         />
+        <div className="mt-6 uppercase w-full font-semibold bg-sky-600 hover:bg-sky-500 text-sky-50 text-center text-white">
         <Button
           variant="outlined"
-          className="mt-6 uppercase w-full font-semibold bg-sky-600 hover:bg-sky-500 text-sky-50"
           type="submit"
+          className="text-white"
         >
           Submit
+        
         </Button>
+        </div>
         {error.length > 0 && (
           <span className="italic text-red-500 mt-8">{error}</span>
         )}
       </form>
       <hr />
+      <div className="mt-12 uppercase w-full font-semibold">
       <Button
         variant="outlined"
-        className="mt-12 uppercase w-full font-semibold"
         onClick={loginWithGoogle}
+        className="w-full"
       >
         Sign in with google
       </Button>
+      </div>
     </div>
   );
 };
