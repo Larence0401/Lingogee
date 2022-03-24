@@ -145,6 +145,8 @@ const Chatscreen = ({ chat, messages }) => {
     ? recipient?.profilePic
     : recipient?.photoURL;
 
+
+
   return (
     <div className="w-full h-full">
       <div className="sticky z-50 top-0 flex p-4 border-b-2 border-slate-50 justify-between bg-white shadow-sm">

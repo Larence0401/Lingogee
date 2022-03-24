@@ -89,7 +89,7 @@ const Sidebar = () => {
   }, [chatsSnapshot]);
 
   return (
-    <div className="flex-[.45] border-r-2 br-slate-50 h-screen min-w-[300px] mx-w-[350px] relative hidden md:block">
+    <div className="flex-[.45] border-r-2 br-slate-50 h-screen min-w-0  md:min-w-[300px] mx-w-[350px] relative hidden md:block">
       {isOpen ? (
         <EditProfile setIsOpen={setIsOpen} />
       ) : (

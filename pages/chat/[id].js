@@ -16,7 +16,7 @@ import { db, useAuth } from "../../firebase";
 const Chat = ({ chat, messages }) => {
   const user = useAuth();
   return (
-    <div className="flex">
+    <div className="flex w-screen">
       <Head>
         <title>Chat with {getRecipientEmail(chat.users, user)}</title>
       </Head>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, rgbToHex } from "@mui/material";
 import { loginWithGoogle, loginUser } from "../firebase";
 
 const SignIn = () => {
@@ -35,6 +35,7 @@ const SignIn = () => {
         />
         <div className="mt-6 uppercase w-full font-semibold bg-sky-600 hover:bg-sky-500 text-sky-50 text-center text-white">
         <Button
+          sx={{color: 'white'}}
           variant="outlined"
           type="submit"
           className="text-white"
