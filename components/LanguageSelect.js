@@ -67,12 +67,12 @@ const LanguageSelect = () => {
 
   return (
     <div
-      className="xl:-translate-x-16 flex items-center box-border"
+      className="xl:-translate-x-16 flex flex-col md:flex-row items-center box-border"
       id="langSelectContainer"
     >
-      <div className="flex border-2 border-sky-100 p-4 mr-4 rounded">
+      <div className="flex md:border-2 md:border-sky-100 md:p-4 mr-4 rounded">
         <button
-          className={`bg-sky-600 hover:bg-sky-700 rounded-md text-sky-50 text-sm p-2 px-4 uppercase font-semibold shadow-md mr-4 w-44`}
+          className={`bg-sky-600 hover:bg-sky-700 rounded-md text-sky-50 text-xs md:text-sm p-0.5 px-2 md:p-2 md:px-4 uppercase font-semibold shadow-md mr-2 md:mr-4 w-[33%] md:w-44`}
           onClick={() => toggleButton(1)}
         >
           {btnText1}
@@ -83,12 +83,13 @@ const LanguageSelect = () => {
         </div>
       </div>
 
-      <div className="p-4 text-blue-600 mr-4 hidden lg:block">
+      <div className="hidden md:block p-4 text-blue-600 mr-4 hidden lg:block">
         <LanguageIcon style={{ fontSize: "3em" }} />
       </div>
-      <div className="flex border-2 border-sky-100 p-4 mr-4 rounded">
+      <hr className="block md:hidden pb-2"/>
+      <div className="hidden md: flex md:border-2 md:border-sky-100 md:p-4 mr-4 rounded">
         <button
-          className={`bg-sky-600 hover:bg-sky-700 rounded-md text-sky-50 text-sm p-2 px-4 uppercase font-semibold shadow-md mr-4 w-44`}
+          className={`bg-sky-600 hover:bg-sky-700 rounded-md text-sky-50 text-xs md:text-sm p-0.5 px-2 md:p-2 md:px-4 uppercase font-semibold shadow-md mr-2 md:mr-4 w-[33%] md:w-44`}
           onClick={() => toggleButton(2)}
         >
           {btnText2}

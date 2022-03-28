@@ -2,6 +2,8 @@ import Head from "next/head";
 import Sidebar from "../components/Sidebar";
 import { useTranslationContext } from "../store/context";
 
+
+
 export default function Home() {
   const { state, dispatch } = useTranslationContext();
 

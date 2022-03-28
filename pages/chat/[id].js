@@ -13,13 +13,18 @@ import {
 import getRecipientEmail from "../../utils/getRecipientEmail";
 import { db, useAuth } from "../../firebase";
 
+
 const Chat = ({ chat, messages }) => {
   const user = useAuth();
   return (
     <div className="flex w-screen">
       <Head>
         <title>Chat with {getRecipientEmail(chat.users, user)}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      {/* <NextPortal show="false">
+          <BackArrow/>
+      </NextPortal> */}
       <Sidebar/>
       <div className="flex w-full">
         <ChatScreen

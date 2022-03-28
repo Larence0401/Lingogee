@@ -6,7 +6,7 @@ const LanguageDropDown = ({ setLangOne, setLangTwo, side }) => {
     <select
       name=""
       id="language_select"
-      className="mr-4 p-2"
+      className="mr-4 px-2 text-sm md:text-sm rounded-md bg-slate-200"
       onChange={
         side === "one"
           ? (e) => setLangOne(e.target.value)

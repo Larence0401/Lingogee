@@ -31,7 +31,7 @@ const Chat = ({ id, users, search }) => {
     <>
       {!search || (search.length > 0 && recipientEmail.includes(search)) ? (
         <div
-          className="flex items-center cursor-pointer p-4 break-words hover:bg-slate-100"
+          className="flex items-center cursor-pointer p-4 break-words hover:bg-slate-100 border-b border-slate-200 md:border-0"
           onClick={enterChat}
         >
           <Avatar className="m-2 mr-4" src={photoURL}>

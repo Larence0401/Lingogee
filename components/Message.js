@@ -92,7 +92,7 @@ const Message = ({ user, message }) => {
   return (
     <div>
       <p
-        className={`w-fit p-4 rounded-lg m-4 min-w-64 max-w-[60%] pb-8 pl-8 relative text-right ${typeOfMessage}`}
+        className={`w-fit p-4 rounded-lg my-4  min-w-64 max-w-[80%] md:max-w-[60%] pb-8 pl-8 relative text-right ${typeOfMessage}`}
       >
         {message?.image?.length > 0 && (
           <img src={message.image} className="pb-4" />
