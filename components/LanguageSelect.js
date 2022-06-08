@@ -87,7 +87,7 @@ const LanguageSelect = () => {
         <LanguageIcon style={{ fontSize: "3em" }} />
       </div>
       <hr className="block md:hidden pb-2"/>
-      <div className="hidden md: flex md:border-2 md:border-sky-100 md:p-4 mr-4 rounded">
+      <div className="hidden md:flex md:border-2 md:border-sky-100 md:p-4 mr-4 rounded">
         <button
           className={`bg-sky-600 hover:bg-sky-700 rounded-md text-sky-50 text-xs md:text-sm p-0.5 px-2 md:p-2 md:px-4 uppercase font-semibold shadow-md mr-2 md:mr-4 w-[33%] md:w-44`}
           onClick={() => toggleButton(2)}
