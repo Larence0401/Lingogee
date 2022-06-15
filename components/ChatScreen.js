@@ -109,7 +109,6 @@ const Chatscreen = ({ chat, messages }) => {
       image: "",
     });
     setInput("");
-    scrollToBottom();
     if (!selectedFile) return;
     const imageRef = ref(storage, `messages/${docRef.id}/image`);
 
@@ -180,7 +179,7 @@ const Chatscreen = ({ chat, messages }) => {
       </div>
       <div
         id="message-container"
-        className="p-4 md:p-12 bg-sky-50 h-[90vh] !overflow-y-auto w-full z-40"
+        className="p-4 pb-[200px] md:p-12 bg-sky-50 h-[90vh] !overflow-y-auto w-full z-40"
       >
         {selectedFile ? (
           <FileUpload
