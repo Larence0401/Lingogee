@@ -24,10 +24,10 @@ import TimeAgo from "timeago-react";
 import LanguageSelect from "./LanguageSelect";
 import { ref, getDownloadURL, uploadString } from "@firebase/storage";
 import FileUpload from "./FileUpload";
-import EmojiPicker from './EmojiPicker'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import BackArrow from "./BackArrow"
-import Link from 'next/link'
+import EmojiPicker from "./EmojiPicker";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import BackArrow from "./BackArrow";
+import Link from "next/link";
 
 //This component displays the messages in a respective chat, the top menu bar and the input field for new messages
 
@@ -65,6 +65,7 @@ const Chatscreen = ({ chat, messages }) => {
     if (messagesSnapshot) {
       return messagesSnapshot.docs.map((message) => (
         <Message
+          className="scroll-mt-12"
           key={message.id}
           user={message.data().user}
           message={{
@@ -81,12 +82,12 @@ const Chatscreen = ({ chat, messages }) => {
     }
   };
 
-  const scrollToBottom = () => {
-    endOfMessagesRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
+  // const scrollToBottom = () => {
+  //   endOfMessagesRef.current.scrollIntoView({
+  //     behavior: "smooth",
+  //     block: "start",
+  //   });
+  // };
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -141,15 +142,13 @@ const Chatscreen = ({ chat, messages }) => {
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
   const recipientEmail = getRecipientEmail(chat.users, user);
-  const username = recipient?.username ? recipient?.username : null
+  const username = recipient?.username ? recipient?.username : null;
   const recipientPic = recipient?.profilePic
     ? recipient?.profilePic
     : recipient?.photoURL;
 
-
-
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full">
       <div className="sticky z-50 top-0 flex p-4 border-b-2 border-slate-50 justify-between bg-white shadow-sm">
         <div className="flex items-center">
           {recipient ? (
@@ -158,7 +157,9 @@ const Chatscreen = ({ chat, messages }) => {
             <Avatar>{recipientEmail[0]}</Avatar>
           )}
           <div className="ml-8 flex-1">
-            <h3 className="hidden xl:flex">{username ? username : recipientEmail}</h3>
+            <h3 className="hidden xl:flex">
+              {username ? username : recipientEmail}
+            </h3>
             {recipientSnapshot ? (
               <p className="hidden xl:flex">
                 Last active:{" "}
@@ -174,14 +175,13 @@ const Chatscreen = ({ chat, messages }) => {
           </div>
         </div>
         <LanguageSelect />
-        <BackArrow/>
-        <div className="flex">
-        </div>
+        <BackArrow />
+        <div className="flex"></div>
       </div>
       <div
         id="message-container"
         className="p-4 md:p-12 bg-sky-50 h-[90vh] !overflow-y-auto w-full z-40"
-      >      
+      >
         {selectedFile ? (
           <FileUpload
             file={selectedFile}
@@ -199,10 +199,10 @@ const Chatscreen = ({ chat, messages }) => {
           id="input-container"
           className="flex flex-col items-center p-4 sticky bottom-0 bg-white z-100"
         >
-          {EmojiPickerIsOpen && <EmojiPicker setInput={setInput}/>}
+          {EmojiPickerIsOpen && <EmojiPicker setInput={setInput} />}
           <div className="flex flex-row  items-center space-between w-full">
             <IconButton onClick={handleClick}>
-              <InsertEmoticonIcon className="text-slate-800 hover:text-slate-900 text-2xl self-start"/>
+              <InsertEmoticonIcon className="text-slate-800 hover:text-slate-900 text-2xl self-start" />
             </IconButton>
 
             <input
