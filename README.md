@@ -50,7 +50,7 @@ Some ideas for additional feature you could add to the app:
 
 - group chat functionality
 - forwarding messages
-- building a version of this app in react Native
+- building a version of this app in React Native
 
 ## Deploy on Vercel
 
